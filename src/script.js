@@ -19,6 +19,7 @@ botaoCartao.addEventListener('click', () => {
     } else {
         alert('Por favor, insira um nome de usuário!');
     }
+    
 });
 
 function adicionarCartao(user) {
