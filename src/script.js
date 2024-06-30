@@ -10,25 +10,29 @@ botaoCartao.addEventListener('click', () => {
             if (dados.message === 'Not Found') {
                 alert('Usuário não encontrado!');
             } else {
-                adicionarCartao(dados);
+                fetch(`https://api.github.com/users/${username}/repos`)
+                .then(resposta => resposta.json() )
+                .then(repos =>{
+                    adicionarCartao(dados,repos);
+                })
+                .catch(error => {
+                    console.log("Erro ao buscar os repositórios",error)
+                })
             }
-            const repos = document.getElementById('repos').value;
-        })}if (repos) {
-                fetch(`https://api.github.com/repos/${repos}`)
-                .then(resposta => resposta.json())
-                
-            }
-    //         .catch(error => {
-    //             console.error('Erro ao buscar dados:', error);
-    //         });
-    // } else {
-    //     alert('Por favor, insira um nome de usuário!');
-    // }
+            
+        }).catch(error => {
+            alert('Erro ao buscar dados:', error);
+        });
+    } else {
+        alert('Por favor, insira um nome de usuário!');
+    }
     
 });
 
-function adicionarCartao(user) {
+function adicionarCartao(user,repos) {
     const card = document.createElement('div');
+    // const reposContainer = card.querySelector('#repositorio');
+    const primeiroRepo = repos[0];
     card.className = 'flex';
     card.innerHTML =`<div id="cartoes" class="flex flex-col items-center w-64 h-96 border rounded-md">
         <img class="h-36" src="github-pages-1024x512.jpg">
@@ -36,10 +40,10 @@ function adicionarCartao(user) {
         <p class="mt-4 font-bold">${user.name}</p>
                       <p class="text-gray-500">@${user.login}</p>
                       <div class="flex justify-start rounded-sm"><strong class="mt-2">REPOSITÓRIOS</strong></div>
-                      <div class="flex w-56 h-20 bg-gray-200 justify-center rounded-sm items-center">
-                        <p id='repositorio'class="text-black">${repos.name}</p>
-                        <p id='repositorio' class="text-gray-800">${repos.description}</p>
-                        <div class='bg-slate-400 text-black rounded-sm'><p id='repositorio'>${repos.language}</p></div>
+                      <div class="flex w-56 h-24 bg-gray-200 flex-wrap flex-row rounded-sm items-center">
+                        <p id='repositorio'class="text-black"><strong>${primeiroRepo.name}</strong></p>
+                        <p id='repositorio' class="text-gray-800">${primeiroRepo.description}</p>
+                        <p class='bg-slate-400 text-black rounded-sm' id='repositorio'>${primeiroRepo.language}</p>
                     </div>
                       
 </div>` 
