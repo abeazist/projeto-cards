@@ -39,11 +39,11 @@ function adicionarCartao(user,repos) {
         <img class="w-20 h-20 rounded-full object-cover absolute top-40 border-4 border-white" src="${user.avatar_url}" alt="Profile Picture">         <br>
         <p class="mt-4 font-bold">${user.name}</p>
                       <p class="text-gray-500">@${user.login}</p>
-                      <div class="flex justify-start rounded-sm"><strong class="mt-2">REPOSITÓRIOS</strong></div>
-                      <div class="flex w-56 h-24 bg-gray-200 flex-wrap flex-row rounded-sm items-center">
+                      <div class="flex justify-start rounded-md"><strong class="mt-2">REPOSITÓRIOS</strong></div>
+                      <div class="flex w-56 h-24 bg-gray-200 flex-wrap flex-row rounded-md items-center">
                         <p id='repositorio'class="text-black"><strong>${primeiroRepo.name}</strong></p>
                         <p id='repositorio' class="text-gray-800">${primeiroRepo.description}</p>
-                        <p class='bg-slate-400 text-black rounded-sm' id='repositorio'>${primeiroRepo.language}</p>
+                        <p class='bg-slate-400 text-black rounded-sm' id='repositorio'>#${primeiroRepo.language}</p>
                     </div>
                       
 </div>` 
