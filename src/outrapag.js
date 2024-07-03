@@ -1,5 +1,4 @@
 const cartao = document.getElementById('cartao');
-
 const listaRepos = document.createElement('div');
 
 listaRepos.className='flex';
