@@ -31,21 +31,25 @@ function adicionarCartao(user, repos) {
     const card = document.createElement('div');
     card.className = 'flex flex-col items-center w-64 h-96 border gap-1 rounded-md';
 
-    const primeiroRepo = repos;
+    let reposHtml = repos.map(repo => `
+        <div class="repo-item">
+            <p class="text-black"><strong>${repo.name}</strong></p>
+            <p class="text-gray-800">${repo.description || 'Sem descrição'}</p>
+            <p class='bg-slate-400 text-black rounded-sm'>#${repo.language || 'Sem linguagem'}</p>
+        </div>
+    `).join('');
 
     card.innerHTML = `
         <img class="h-36" src="github-pages-1024x512.jpg">
         <img class="w-20 h-20 rounded-full object-cover absolute top-40 border-4 border-white" src="${user.avatar_url}" alt="Profile Picture">
         <br>
-        <p class="mt-4 font-bold">${user.name}</p>
+        <p class="mt-4 font-bold">${user.name || user.login}</p>
         <p class="text-gray-500">@${user.login}</p>
         <div class="flex justify-start rounded-md"><strong class="mt-2">REPOSITÓRIOS</strong></div>
-        <div class="flex w-56 h-27 overflow-x:hidden overflow-y:scroll; bg-gray-200 flex-wrap flex-row rounded-md items-center">
-            <p id='repositorio' class="text-black"><strong>${primeiroRepo.name}</strong></p>
-            <p id='repositorio' class="text-gray-800">${primeiroRepo.description}</p>
-            <p class='bg-slate-400 text-black rounded-sm' id='repositorio'>#${primeiroRepo.language}</p>
+        <div class="flex w-56 h-20 overflow-x-hidden overflow-y-scroll gap-4 bg-gray-200 flex-wrap flex-row rounded-md items-center">
+            ${reposHtml}
+            
         </div>
-        
     `;
     
     cartoes.appendChild(card);
