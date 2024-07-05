@@ -32,7 +32,7 @@ function adicionarCartao(user, repos) {
     card.className = 'flex flex-col items-center w-64 h-96 border gap-1 rounded-md';
 
     let reposHtml = repos.map(repo => `
-        <div class="repo-item">
+        <div class="repo-item ">
             <p class="text-black"><strong>${repo.name}</strong></p>
             <p class="text-gray-800">${repo.description || 'Sem descrição'}</p>
             <p class='bg-slate-400 text-black rounded-sm'>#${repo.language || 'Sem linguagem'}</p>
