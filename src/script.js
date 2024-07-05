@@ -1,7 +1,9 @@
 const cartoes = document.getElementById('cartoes');
 const botaoCartao = document.getElementById('botaoCartao');
 
+
 botaoCartao.addEventListener('click', () => {
+    document.getElementById('cartoes').style.display='flex'
     const username = document.getElementById('usuario').value;
     if (username) {
         fetch(`https://api.github.com/users/${username}`)
@@ -25,7 +27,8 @@ botaoCartao.addEventListener('click', () => {
     } else {
         alert('Por favor, insira um nome de usuário!');
     }
-});
+})
+;
 
 function adicionarCartao(user, repos) {
     const card = document.createElement('div');
